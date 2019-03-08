@@ -2,6 +2,8 @@
 namespace Framework\Core;
 
 use Framework\App\Controllers;
+use Framework\App\Models\DataAccess;
+use Framework\App\Models\UserModel;
 use Framework\Core\Results;
 
 class Router
@@ -23,7 +25,8 @@ class Router
         $className = 'Framework\App\Controllers\\' . ucfirst($controller) . 'Controller';
         if (class_exists($className, true))  
         {
-            $controllerClass = new $className();
+            $dataAccess = new DataAccess(new UserModel());
+            $controllerClass = new $className($dataAccess);
             if (method_exists($controllerClass, $action))
             {
                 $result = $controllerClass->{ $action }();
@@ -31,7 +34,6 @@ class Router
                 return;
             }    
         }
-
         // Call the index of the article controller if the specified 
         // controller or action were not found.
         Results\ViewResult::error()->execute();           

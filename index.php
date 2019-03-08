@@ -1,11 +1,9 @@
 <?php
-session_start();
 require_once('vendor/autoload.php');
 
-use Framework\Core\Router;
+use Framework\Core\Startup;
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+echo $_SERVER['REQUEST_URI'];
 
-$router = new Router();
-$router->start();
+$startup = new Startup();
+$startup->start();

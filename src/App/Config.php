@@ -13,4 +13,5 @@ class Config
     const DB_USER = 'root';
     const DB_PASS = 'P@ssw0rd';
 
+    const SITE_ROOT = '~michael/phpframework/';
 }

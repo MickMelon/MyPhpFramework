@@ -3,6 +3,7 @@ namespace Framework\Core;
 
 use PDO;
 use Framework\App\Config;
+use Framework\Core\Util\StringHelper;
 
 /**
  * The singleton Database access used to ensure that there is only
@@ -26,11 +27,24 @@ class Database
      * Returns the singleton Database instance. If there is none, 
      * it will create it.
      */
-    public static function getInstance()
+    private static function getInstance()
     {
         if (!isset(self::$instance))
             self::setInstance();
         return self::$instance;
+    }
+
+    public static function query($queryString, $params = array())
+    {
+        $query = self::getInstance()->prepare($queryString);
+        $query->execute($params);
+        if (explode(' ', $queryString)[0] == 'SELECT')
+        {
+            if (StringHelper::endsWith($queryString, 'LIMIT 1'))
+                return $query->fetch();
+            return $query->fetchAll();
+        }
+            
     }
 
     /**

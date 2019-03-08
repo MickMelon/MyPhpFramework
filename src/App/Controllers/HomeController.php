@@ -2,19 +2,20 @@
 namespace Framework\App\Controllers;
 
 use Framework\Core\Results;
-use Framework\App\Models;
+use Framework\App\Models\DataAccess;
 
 class HomeController 
 {
-    private $userModel;
+    private $dataAccess;
 
-    public function __construct()
+    public function __construct(DataAccess $dataAccess)
     {
-        $this->userModel = new Models\UserModel();
+        $this->dataAccess = $dataAccess;
     }
 
     public function home()
     {
+        echo '*home';
         $result = new Results\ViewResult('Pages/home');
         $result->assign('pageTitle', 'Home Page');
         $result->assign('test', 'Just a test');
@@ -23,9 +24,10 @@ class HomeController
 
     public function test()
     {
-        $users = $this->userModel->getAllUsers();
+        echo '*test*';
+        $user = $this->dataAccess->users()->getById(1);
         $result = new Results\ViewResult('Pages/test');
-        $result->assign('users', $users);
+        $result->assign('user', $user);
         return $result;
     }
 }

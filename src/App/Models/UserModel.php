@@ -13,4 +13,17 @@ class UserModel extends BaseModel
 
         return $query->fetchAll();
     }
+
+    public function getAllUsers2()
+    {
+        return $this->query("SELECT * FROM `User`");
+    }
+
+    public function getById($id)
+    {
+        return $this->query("SELECT * FROM `User` WHERE `ID` = :id LIMIT 1",
+            array(
+                ':id' => $id,
+            ));
+    }
 }

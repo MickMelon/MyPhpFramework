@@ -5,8 +5,8 @@ use PDO;
 
 abstract class BaseModel
 {
-    public function database() 
+    public function query($query, $params = array()) 
     {
-        return Database::getInstance();
+        return Database::query($query, $params);
     }
 }
