@@ -5,24 +5,22 @@ use Framework\App\Config;
 
 class Startup
 {
-    public function start()
+    public function start($path, $method)
     {
         error_reporting(E_ALL);
         ini_set("display_errors", 1);
 
         session_start();
 
-        $router = new Router2();
+        echo $path;
+
+        $router = new Router();
         $router
             ->get('/', 'Home@Home')
             ->get('/home', 'Home@Home')
             ->get('/test', 'Home@Test');
 
-        $path = $_SERVER['REQUEST_URI'];
-        $length = strlen($path) - strlen(Config::SITE_ROOT);
-        $path = substr($path, -($length));
-
-        $request = new Request('GET', $path);
+        $request = new Request($method, $path);
         
         $dispatcher = new Dispatcher($router);
         $dispatcher->handle($request);

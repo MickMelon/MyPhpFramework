@@ -1,5 +1,5 @@
 <?php
-namespace Framework\App\Models;
+namespace Framework\App\Data;
 
 class DataAccess
 {

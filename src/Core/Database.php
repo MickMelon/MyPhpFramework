@@ -44,7 +44,6 @@ class Database
                 return $query->fetch();
             return $query->fetchAll();
         }
-            
     }
 
     /**

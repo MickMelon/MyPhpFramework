@@ -5,7 +5,7 @@ class Dispatcher
 {
     private $router;
 
-    public function __construct(Router2 $router)
+    public function __construct(Router $router)
     {
         $this->router = $router;
     }
