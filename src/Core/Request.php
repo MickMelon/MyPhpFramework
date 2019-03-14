@@ -5,11 +5,13 @@ class Request
 {
     private $method;
     private $path;
+    private $params;
 
-    public function __construct($method, $path)
+    public function __construct($method, $path, $params = array())
     {
         $this->method = $method;
         $this->path = $path;
+        $this->params = $params;
     }
 
     public function getMethod()
@@ -20,5 +22,10 @@ class Request
     public function getPath()
     {
         return $this->path;
+    }
+
+    public function getParams()
+    {
+        return $this->params;
     }
 }

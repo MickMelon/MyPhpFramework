@@ -71,8 +71,10 @@ class ViewResult implements IActionResult
         $this->data[$variable] = $value;
     }
 
-    public static function error()
+    public static function error($error = 'Unspecified Error')
     {
-        return new ViewResult('Pages/error.php');
+        $result = new ViewResult('Pages/error');
+        $result->assign('error', $error);
+        return $result;
     }
 }

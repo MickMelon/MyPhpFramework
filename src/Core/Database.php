@@ -27,7 +27,7 @@ class Database
      * Returns the singleton Database instance. If there is none, 
      * it will create it.
      */
-    private static function getInstance()
+    public static function getInstance()
     {
         if (!isset(self::$instance))
             self::setInstance();

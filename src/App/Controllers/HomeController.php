@@ -2,17 +2,11 @@
 namespace Framework\App\Controllers;
 
 use Framework\Core\Results;
-use Framework\App\Models\DataAccess;
+use Framework\Core\BaseController;
+use Framework\App\Data\Repositories\UserRepository;
 
-class HomeController 
+class HomeController extends BaseController
 {
-    private $dataAccess;
-
-    public function __construct(DataAccess $dataAccess)
-    {
-        $this->dataAccess = $dataAccess;
-    }
-
     public function home()
     {
         echo '*home';
@@ -28,6 +22,14 @@ class HomeController
         $user = $this->dataAccess->users()->getById(1);
         $result = new Results\ViewResult('Pages/test');
         $result->assign('user', $user);
+        return $result;
+    }
+
+    public function paramstest()
+    {
+        if (isset($this->params['test'])) echo 'tefgst1';
+        $result = new Results\ViewResult('Pages/paramstest');
+        $result->assign('test', $this->params['test']);
         return $result;
     }
 }

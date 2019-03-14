@@ -1,10 +1,8 @@
 <?php
 namespace Framework\Core;
 
-use Framework\Core\Request;
 use Framework\App\Config;
-use Framework\App\Models\UserModel;
-use Framework\App\Models\DataAccess;
+use Exception;
 
 /**
  * Undocumented class
@@ -60,37 +58,14 @@ class Router
      */
     public function addRoute($method, $pattern, $actionPath)
     {
-        $this->routes[$method][$pattern] = $this->getHandler($actionPath);
+        $handler = RequestHandler::make($actionPath);
+        if (!$handler)
+            throw new Exception('Could not find valid route for action path: ' . $actionPath);
+
+        $pattern = trim($pattern, '/');
+
+        $this->routes[$method][$pattern] = $handler;
         return $this;
-    }
-
-    /**
-     * Gets the RequestHandler for the given action path.
-     *
-     * @param string $actionPath The controller and action. 
-     *               Ex: Home@About where Home is the controller name and About is
-     *               the action name. {Controller}@{Action}
-     * @return RequestHandler The RequestHandler or false if none found.
-     */
-    private function getHandler($actionPath)
-    {
-        $explode = explode('@', $actionPath);
-
-        $controller = $explode[0];
-        $action = $explode[1];
-
-        $className = 'Framework\App\Controllers\\' . ucfirst($controller) . 'Controller';
-        if (class_exists($className, true))
-        {
-            $controllerInstance = new $className(new DataAccess(new UserModel()));
-            if (method_exists($controllerInstance, $action))
-            {
-                $handler = new RequestHandler($controllerInstance, $action);
-                return $handler;
-            }
-        }
-
-        return false;
     }
 
     /**
@@ -107,7 +82,8 @@ class Router
         if (!isset($this->routes[$method]))
             return false;
 
-        $path = $request->getPath();
+        $path = trim($request->getPath(), '/');
+
         foreach ($this->routes[$method] as $pattern => $handler)
             if (strtolower($pattern) === $path)
                 return $handler;

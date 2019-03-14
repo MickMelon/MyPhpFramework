@@ -1,1 +1,1 @@
-<p style="color:red">Error</p>
+<p style="color:red"><?= $error ?></p>

@@ -1,6 +1,8 @@
 <?php
 namespace Framework\Core;
 
+use Framework\Core\Results\ViewResult;
+
 class Dispatcher
 {
     private $router;
@@ -13,15 +15,17 @@ class Dispatcher
     public function handle(Request $request)
     {
         $handler = $this->router->match($request);
-
         if (!$handler)
         {
-            echo "Error";
+            ViewResult::error('404 Page Not Found')->execute();
             return;
         }
 
         $controller = $handler->getController();
         $action = $handler->getAction();
+        $params = $request->getParams();
+
+        $controller->withParams($params);
         $result = $controller->{ $action }();
         $result->execute();
     }

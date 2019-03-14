@@ -1,1 +1,1 @@
-<?= $user->Name ?>
+<?= $user->ID ?> <?= $user->Name ?> <?= $user->Email ?>
