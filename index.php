@@ -1,8 +1,13 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+session_start();
+
 require_once('vendor/autoload.php');
 
-use Framework\Core\Startup;
-use Framework\App\Config;
+use Core\Startup;
+use App\Config;
 
 $path = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];

@@ -1,7 +1,7 @@
 <?php
-namespace Framework\Core;
+namespace Core;
 
-use Framework\Core\Results\ViewResult;
+use Core\Results\ViewResult;
 
 class Dispatcher
 {

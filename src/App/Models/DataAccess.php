@@ -1,13 +1,15 @@
 <?php
-namespace Framework\App\Models;
+namespace App\Models;
 
-class DataAccess
+use Core\IDataAccess;
+
+class DataAccess implements IDataAccess
 {
     private static $instance;
 
     private $userModel;
 
-    public function __construct(UserModel $userModel)
+    private function __construct(UserModel $userModel)
     {
         $this->userModel = $userModel;
     }
@@ -17,14 +19,19 @@ class DataAccess
         return $this->userModel;
     }
 
-    public static function make()
+    public static function getInstance()
     {
         if (!isset(self::$instance))
         {
-            $userModel = new UserModel();
-            self::$instance = new DataAccess($userModel);
+            self::setInstance();
         }
 
         return self::$instance;
+    }
+
+    private static function setInstance()
+    {
+        $userModel = new UserModel();
+        self::$instance = new DataAccess($userModel);
     }
 }

@@ -1,7 +1,7 @@
 <?php
-namespace Framework\Core;
+namespace Core;
 
-use Framework\App\Config;
+use App\Config;
 use Exception;
 
 /**

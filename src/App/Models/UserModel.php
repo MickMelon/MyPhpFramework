@@ -1,7 +1,7 @@
 <?php
-namespace Framework\App\Models;
+namespace App\Models;
 
-use Framework\Core\Database;
+use Core\Database;
 
 class UserModel
 {

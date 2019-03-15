@@ -1,5 +1,5 @@
 <?php
-namespace Framework\App;
+namespace App;
 /**
  * Stores all the global configuration settings for the app.
  */

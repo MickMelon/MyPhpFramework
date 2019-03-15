@@ -1,17 +1,15 @@
 <?php
-namespace Framework\Core;
+namespace Core;
 
-use Framework\App\Config;
+use App\Config;
+use Exception;
 
 class Startup
 {
     public function start($path, $method)
     {
-        error_reporting(E_ALL);
-        ini_set("display_errors", 1);
+        $this->verifyApp();
 
-        session_start();
-        
         $params = $this->getParams($method);
         $request = new Request($method, $path, $params);
 
@@ -52,5 +50,14 @@ class Startup
             ->get('/test', 'Home@Test')
             ->get('/test/params', 'Home@ParamsTest');
         return $router;
+    }
+
+    private function verifyApp()
+    {
+        if (!class_exists('App\Config'))
+            throw new Exception('App\Config class not found.');
+
+        if (!class_exists('App\Models\DataAccess'))
+            throw new Exception('App\Models\DataAccess class not found.');
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Core\Results;
+namespace Core\Results;
 
 interface IActionResult
 {

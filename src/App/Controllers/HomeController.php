@@ -1,9 +1,9 @@
 <?php
-namespace Framework\App\Controllers;
+namespace App\Controllers;
 
-use Framework\Core\Results;
-use Framework\Core\BaseController;
-use Framework\App\Data\Repositories\UserRepository;
+use Core\Results;
+use Core\BaseController;
+use App\Data\Repositories\UserRepository;
 
 class HomeController extends BaseController
 {

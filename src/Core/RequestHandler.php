@@ -1,8 +1,7 @@
 <?php
-namespace Framework\Core;
+namespace Core;
 
-use Framework\App\Models\DataAccess;
-use Framework\App\Controllers\ControllerFactory;
+use App\Models\DataAccess;
 
 class RequestHandler
 {

@@ -1,7 +1,7 @@
 <?php
-namespace Framework\Core;
+namespace Core;
 
-use Framework\App\Models\DataAccess;
+use App\Models\DataAccess;
 
 abstract class BaseController
 {

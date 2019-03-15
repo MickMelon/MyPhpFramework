@@ -1,9 +1,9 @@
 <?php
-namespace Framework\Core;
+namespace Core;
 
 use PDO;
-use Framework\App\Config;
-use Framework\Core\Util\StringHelper;
+use App\Config;
+use Core\Util\StringHelper;
 
 /**
  * The singleton Database access used to ensure that there is only

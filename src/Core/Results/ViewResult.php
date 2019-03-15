@@ -1,7 +1,7 @@
 <?php
-namespace Framework\Core\Results;
+namespace Core\Results;
 
-use Framework\Core\Results\IActionResult;
+use Core\Results\IActionResult;
 
 class ViewResult implements IActionResult
 {
