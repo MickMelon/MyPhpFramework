@@ -3,22 +3,52 @@ namespace Core;
 
 use App\Models\DataAccess;
 
+/**
+ * The request handler.
+ */
 class RequestHandler
 {
+    /**
+     * The instance of the controller that will handle the request.
+     *
+     * @var BaseController
+     */
     private $controller;
+
+    /**
+     * The action to be invoked on the controller. (the method)
+     *
+     * @var string
+     */
     private $action;
 
+    /**
+     * Initializes a new instance of the RequestHandler class.
+     *
+     * @param BaseController $controller The controller instance.
+     * @param string $action The action to be invoked on the controller.
+     */
     public function __construct($controller, $action)
     {
         $this->controller = $controller;
         $this->action = $action;
     }
 
+    /**
+     * Gets the controller.
+     *
+     * @return BaseController
+     */
     public function getController()
     {
         return $this->controller;
     }
 
+    /**
+     * Gets the action.
+     *
+     * @return string
+     */
     public function getAction()
     {
         return $this->action;

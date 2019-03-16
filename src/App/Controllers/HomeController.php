@@ -3,10 +3,22 @@ namespace App\Controllers;
 
 use Core\Results;
 use Core\BaseController;
+
+use Core\Util\Identity;
+use Core\Util\Session;
+
 use App\Data\Repositories\UserRepository;
 
+/**
+ * Undocumented class
+ */
 class HomeController extends BaseController
 {
+    /**
+     * Displays the home page.
+     *
+     * @return IActionResult
+     */
     public function home()
     {
         echo '*home';
@@ -16,6 +28,11 @@ class HomeController extends BaseController
         return $result;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function test()
     {
         echo '*test*';
@@ -25,11 +42,29 @@ class HomeController extends BaseController
         return $result;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function paramstest()
     {
         if (isset($this->params['test'])) echo 'tefgst1';
         $result = new Results\ViewResult('Pages/paramstest');
         $result->assign('test', $this->params['test']);
         return $result;
+    }
+
+    public function lol()
+    {
+        Session::set('user', 1);
+        if (Identity::isLoggedIn())
+        {
+            return new Results\TextResult('Yes');
+        }
+        else
+        {
+            return new Results\TextResult('No');
+        }
     }
 }

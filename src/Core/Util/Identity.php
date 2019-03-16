@@ -1,13 +1,23 @@
 <?php
-namespace App;
+namespace Core\Util;
 
 use App\Models\DataAccess;
+
+use Core\Util\Session;
 use Core\Util\Password;
 
+/**
+ * Undocumented class
+ */
 class Identity
 {
-    private static $currentUser;
-
+    /**
+     * Undocumented function
+     *
+     * @param [type] $email
+     * @param [type] $password
+     * @return void
+     */
     public static function login($email, $password)
     {
         $dataAccess = DataAccess::getInstance();
@@ -15,15 +25,28 @@ class Identity
         $user = $dataAccess->users()->getByEmail($email);
         if (!$user || !Password::verify($password, $user->Password)) return false;
 
-        self::$currentUser = $user;
+        Session::set('user', $user);
         return true;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public static function logout()
     {
-        if (self::isLoggedIn()) self::$currentUser = null;
+        if (self::isLoggedIn()) Session::delete('user');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $email
+     * @param [type] $password
+     * @param [type] $name
+     * @return void
+     */
     public static function register($email, $password, $name)
     {
         $dataAccess = DataAccess::getInstance();
@@ -36,8 +59,13 @@ class Identity
         return true;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return boolean
+     */
     public static function isLoggedIn()
     {
-        return self::$currentUser != null;
+        return Session::exists('user');
     }
 }
