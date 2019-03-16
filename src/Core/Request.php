@@ -34,7 +34,7 @@ class Request
      * @param string $path The path in the URI.
      * @param array $params The parameters associated with the request.
      */
-    public function __construct($method, $path, $params = array())
+    public function __construct(string $method, string $path, array $params = array())
     {
         $this->method = $method;
         $this->path = $path;

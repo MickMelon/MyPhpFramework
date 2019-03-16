@@ -13,7 +13,7 @@ class Password
      * @param string $textPassword The password in plain-text.
      * @return string The hashed password.
      */
-    public static function hash($textPassword)
+    public static function hash(string $textPassword)
     {
         return hash_password($textPassword);
     }
@@ -25,7 +25,7 @@ class Password
      * @param string $hashPassword The encrypted password hash.
      * @return boolean Whether the password matches.
      */
-    public static function verify($textPassword, $hashPassword)
+    public static function verify(string $textPassword, string $hashPassword)
     {
         return password_verify($textPassword, $hashPassword);
     }

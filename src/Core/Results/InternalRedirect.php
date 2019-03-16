@@ -10,7 +10,7 @@ class InternalRedirect implements IActionResult
     private $path;
     private $params;
 
-    public function __construct($method, $path, array $params = array())
+    public function __construct(string $method, string $path, array $params = array())
     {
         $this->method = $method;
         $this->path = $path;

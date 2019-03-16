@@ -7,7 +7,7 @@ class Text implements IActionResult
 {
     private $text;
 
-    public function __construct($text)
+    public function __construct(string $text)
     {
         $this->text = $text;
     }

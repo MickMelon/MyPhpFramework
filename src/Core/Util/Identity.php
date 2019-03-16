@@ -18,7 +18,7 @@ class Identity
      * @param [type] $password
      * @return void
      */
-    public static function login($email, $password)
+    public static function login(string $email, string $password)
     {
         $dataAccess = DataAccess::getInstance();
 
@@ -47,7 +47,7 @@ class Identity
      * @param [type] $name
      * @return void
      */
-    public static function register($email, $password, $name)
+    public static function register(string $email, string $password, string $name)
     {
         $dataAccess = DataAccess::getInstance();
 

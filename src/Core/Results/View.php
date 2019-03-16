@@ -32,7 +32,7 @@ class View implements IActionResult
      * 
      * @return View
      */
-    public function __construct($template)
+    public function __construct(string $template)
     {
         $file = 'src/App/Views/' . $template . '.php';
         
@@ -66,12 +66,12 @@ class View implements IActionResult
      * 
      * @return void
      */
-    public function assign($variable, $value)
+    public function assign(string $variable, $value)
     {
         $this->data[$variable] = $value;
     }
 
-    public static function error($error = 'Unspecified Error')
+    public static function error(string $error = 'Unspecified Error')
     {
         $result = new View('Pages/error');
         $result->assign('error', $error);

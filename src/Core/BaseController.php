@@ -48,10 +48,10 @@ abstract class BaseController
      * Adds a single parameter to the controller.
      *
      * @param string $name The parameter name.
-     * @param string $value The parameter value.
+     * @param $value The parameter value.
      * @return self
      */
-    public function withParam($name, $value)
+    public function withParam(string $name, $value)
     {
         $this->params[$name] = $value;
         return $this;

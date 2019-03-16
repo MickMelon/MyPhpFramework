@@ -37,7 +37,7 @@ class Session
      * @param object $value
      * @return void
      */
-    public static function set($key, $value)
+    public static function set(string $key, $value)
     {
         $_SESSION[$key] = serialize($value);
     }
@@ -48,7 +48,7 @@ class Session
      * @param string $key The session variable key.
      * @return object The session value.
      */
-    public static function get($key)
+    public static function get(string $key)
     {
         if (self::exists($key))
             return unserialize($_SESSION[$key]);
@@ -60,7 +60,7 @@ class Session
      * @param string $key The session variable key.
      * @return void
      */
-    public static function delete($key)
+    public static function delete(string $key)
     {  
         if (self::exists($key))
             unset($_SESSION[$key]);
@@ -72,7 +72,7 @@ class Session
      * @param string $key The session variable key.
      * @return boolean Whether the key exists.
      */
-    public static function exists($key)
+    public static function exists(string $key)
     {
         return isset($_SESSION[$key]);
     }

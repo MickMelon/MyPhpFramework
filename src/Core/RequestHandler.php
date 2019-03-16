@@ -28,7 +28,7 @@ class RequestHandler
      * @param BaseController $controller The controller instance.
      * @param string $action The action to be invoked on the controller.
      */
-    public function __construct($controller, $action)
+    public function __construct(BaseController $controller, string $action)
     {
         $this->controller = $controller;
         $this->action = $action;

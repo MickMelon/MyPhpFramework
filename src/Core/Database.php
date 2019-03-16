@@ -34,7 +34,7 @@ class Database
         return self::$instance;
     }
 
-    public static function query($queryString, $params = array())
+    public static function query(string $queryString, array $params = array())
     {
         $query = self::getInstance()->prepare($queryString);
         $query->execute($params);

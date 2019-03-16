@@ -11,10 +11,10 @@ class ControllerFactory
     /**
      * Makes a new controller if one exists for the given name.
      *
-     * @param [type] $name The controller name. (do not include 'Controller' as part of the name)
+     * @param string $name The controller name. (do not include 'Controller' as part of the name)
      * @return BaseController The controller or false if none found.
      */
-    public static function make($name)
+    public static function make(string $name)
     {
         $className = 'App\Controllers\\' . ucfirst($name) . 'Controller';
         if (class_exists($className, true))

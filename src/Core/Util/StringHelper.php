@@ -13,7 +13,7 @@ class StringHelper
      * @param string $test The test string that we want to find out if it's at the end.
      * @return boolean Whether the string ends with a given string.
      */
-    public static function endsWith($string, $test)
+    public static function endsWith(string $string, string $test)
     {
         $stringLength = strlen($string);
         $testLength = strlen($test);

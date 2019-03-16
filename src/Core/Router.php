@@ -27,7 +27,7 @@ class Router
      *               the action name. {Controller}@{Action}
      * @return Router This router.
      */
-    public function get($pattern, $actionPath)
+    public function get(string $pattern, string $actionPath)
     {
         return $this->addRoute('GET', $pattern, $actionPath);
     }
@@ -41,7 +41,7 @@ class Router
      *               the action name. {Controller}@{Action}
      * @return Router This router.
      */
-    public function post($pattern, $actionPath)
+    public function post(string $pattern, string $actionPath)
     {
         return $this->addRoute('POST', $pattern, $actionPath);
     }
@@ -56,7 +56,7 @@ class Router
      *               the action name. {Controller}@{Action}
      * @return Router This router.
      */
-    public function addRoute($method, $pattern, $actionPath)
+    public function addRoute(string $method, string $pattern, string $actionPath)
     {
         $handler = RequestHandler::make($actionPath);
         if (!$handler)

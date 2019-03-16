@@ -19,7 +19,7 @@ class Startup
      * @param string $method The request method. i.e. POST or GET
      * @return void
      */
-    public function start($path, $method)
+    public function start(string $path, string $method)
     {
         $this->verifyApp();
 
@@ -40,7 +40,7 @@ class Startup
      * @param string $method The request method.
      * @return array
      */
-    private function getParams($method)
+    private function getParams(string $method)
     {
         $params = array();
 

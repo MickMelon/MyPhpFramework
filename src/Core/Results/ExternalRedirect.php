@@ -8,7 +8,7 @@ class ExternalRedirect implements IActionResult
     private $url;
     private $delaySeconds;
 
-    public function __construct($url, $delaySeconds = 0)
+    public function __construct(string $url, int $delaySeconds = 0)
     {
         $this->url = $url;
         $this->delaySeconds = $delaySeconds;
