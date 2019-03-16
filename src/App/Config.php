@@ -14,4 +14,5 @@ class Config
     const DB_PASS = 'P@ssw0rd';
 
     const SITE_ROOT = '~michael/phpframework/';
+    const SITE_DOMAIN = 'http://localhost/';
 }

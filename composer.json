@@ -4,5 +4,8 @@
             "App\\": "src/App",
             "Core\\": "src/Core"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
     }
 }

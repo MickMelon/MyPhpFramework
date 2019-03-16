@@ -75,7 +75,9 @@ class Startup
             ->get('/home', 'Home@Home')
             ->get('/test', 'Home@Test')
             ->get('/test/params', 'Home@ParamsTest')
-            ->get('/lol', 'Home@Lol');
+            ->get('/lol', 'Home@Lol')
+            ->get('/login', 'Login@Index')
+            ->post('/login/submit', 'Login@Submit');
         return $router;
     }
 
