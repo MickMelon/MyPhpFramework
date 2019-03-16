@@ -3,7 +3,7 @@ namespace Core\Results;
 
 use Core\Results\IActionResult;
 
-class ExternalRedirectResult implements IActionResult
+class ExternalRedirect implements IActionResult
 {
     private $url;
     private $delaySeconds;

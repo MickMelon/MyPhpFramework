@@ -4,7 +4,7 @@ namespace Core\Results;
 use Core\Results\IActionResult;
 use App\Config;
 
-class InternalRedirectResult implements IActionResult
+class InternalRedirect implements IActionResult
 {
     private $method;
     private $path;

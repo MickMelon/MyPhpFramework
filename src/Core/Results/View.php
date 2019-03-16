@@ -3,7 +3,7 @@ namespace Core\Results;
 
 use Core\Results\IActionResult;
 
-class ViewResult implements IActionResult
+class View implements IActionResult
 {
     /**
      * The path to the header file.
@@ -46,9 +46,9 @@ class ViewResult implements IActionResult
     {
         extract($this->data); 
 
-        include(ViewResult::HEADER_FILE);
+        include(self::HEADER_FILE);
         include($this->file);
-        include(ViewResult::FOOTER_FILE);
+        include(self::FOOTER_FILE);
     }
 
     /**
@@ -73,7 +73,7 @@ class ViewResult implements IActionResult
 
     public static function error($error = 'Unspecified Error')
     {
-        $result = new ViewResult('Pages/error');
+        $result = new View('Pages/error');
         $result->assign('error', $error);
         return $result;
     }

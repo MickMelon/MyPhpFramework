@@ -3,7 +3,7 @@ namespace Core\Results;
 
 use Core\Results\IActionResult;
 
-class TextResult implements IActionResult
+class Text implements IActionResult
 {
     private $text;
 

@@ -13,7 +13,7 @@ class LoginController extends BaseController
      */
     public function index()
     {
-        return new Results\ViewResult('Login/index');
+        return new Results\View('Login/index');
     }
 
     public function submit()
@@ -25,14 +25,14 @@ class LoginController extends BaseController
             if (!$success)
             {
                 $errors[] = 'Invalid email or password.';
-                $result = new Results\ViewResult('Login/index');
+                $result = new Results\View('Login/index');
                 $result->assign('errors', $errors);
                 return $result;
             }
 
-            return new Results\ViewResult('Login/success');            
+            return new Results\View('Login/success');            
         }
 
-        return new Results\InternalRedirectResult('GET', 'login');
+        return new Results\InternalRedirect('GET', 'login');
     }
 }

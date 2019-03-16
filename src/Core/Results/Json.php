@@ -3,7 +3,7 @@ namespace Core\Results;
 
 use Core\Results\IActionResult;
 
-class JsonResult implements IActionResult
+class Json implements IActionResult
 {
     private $data;
 

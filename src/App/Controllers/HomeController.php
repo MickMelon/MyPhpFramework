@@ -22,7 +22,7 @@ class HomeController extends BaseController
     public function home()
     {
         echo '*home';
-        $result = new Results\ViewResult('Pages/home');
+        $result = new Results\View('Pages/home');
         $result->assign('pageTitle', 'Home Page');
         $result->assign('test', 'Just a test');
         return $result;
@@ -37,7 +37,7 @@ class HomeController extends BaseController
     {
         echo '*test*';
         $user = $this->dataAccess->users()->getById(1);
-        $result = new Results\ViewResult('Pages/test');
+        $result = new Results\View('Pages/test');
         $result->assign('user', $user);
         return $result;
     }
@@ -50,7 +50,7 @@ class HomeController extends BaseController
     public function paramstest()
     {
         if (isset($this->params['test'])) echo 'tefgst1';
-        $result = new Results\ViewResult('Pages/paramstest');
+        $result = new Results\View('Pages/paramstest');
         $result->assign('test', $this->params['test']);
         return $result;
     }
@@ -60,11 +60,11 @@ class HomeController extends BaseController
         Session::set('user', 1);
         if (Identity::isLoggedIn())
         {
-            return new Results\TextResult('Yes');
+            return new Results\Text('Yes');
         }
         else
         {
-            return new Results\TextResult('No');
+            return new Results\Text('No');
         }
     }
 }
