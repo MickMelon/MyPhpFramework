@@ -1,11 +1,16 @@
 <?php
 namespace App\Data\Repositories;
 
+use App\Data\Repositories\Interfaces\IUserRepository;
+use App\Models\User;
+
+use Core\PdoDatabase;
+
 class UserRepository implements IUserRepository
 {
     private $database;
 
-    public function __construct(IDatabase $database)
+    public function __construct(PdoDatabase $database)
     {
         $this->database = $database;
     }

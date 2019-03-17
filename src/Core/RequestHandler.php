@@ -35,23 +35,18 @@ class RequestHandler
     }
 
     /**
-     * Gets the controller.
+     * Undocumented function
      *
-     * @return BaseController
+     * @param Request $request
+     * @return void
      */
-    public function getController()
+    public function handle(Request $request)
     {
-        return $this->controller;
-    }
+        $controller = $this->controller;
+        $action = $this->action;
 
-    /**
-     * Gets the action.
-     *
-     * @return string
-     */
-    public function getAction()
-    {
-        return $this->action;
+        $result = $controller->{ $action }();
+        $result->execute();
     }
 
     /**
@@ -62,7 +57,7 @@ class RequestHandler
      *               the action name. {Controller}@{Action}
      * @return RequestHandler The RequestHandler or false if none found.
      */
-    public static function make($actionPath)
+    public static function make($actionPath): RequestHandler
     {
         $explode = explode('@', $actionPath);
 

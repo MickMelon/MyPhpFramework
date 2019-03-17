@@ -32,7 +32,7 @@ class User
         string $email, string $password, string $cmgRating, string $handicap, string $created,
         string $lastModified)
     {
-        $this->id = $iD;
+        $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->gender = $gender;

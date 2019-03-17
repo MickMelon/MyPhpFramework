@@ -4,6 +4,8 @@ namespace Core;
 use App\Config;
 use Core\Util\StringHelper;
 
+use PDO;
+
 class PdoDatabase implements IDatabase
 {
     private $pdoInstance;

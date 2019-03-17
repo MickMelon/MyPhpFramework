@@ -1,10 +1,12 @@
 <?php
 namespace App\Controllers;
 
-use Core\BaseController;
+use Core\Request;
 use Core\Results;
 
-class LoginController extends BaseController
+use App\Services\AuthService;
+
+class LoginController
 {
     private $authService;
 
@@ -18,12 +20,12 @@ class LoginController extends BaseController
      *
      * @return ViewResult
      */
-    public function index()
+    public function index(Request $request)
     {
         return new Results\View('Login/index');
     }
 
-    public function submit()
+    public function submit(Request $request)
     {
         if (isset($this->params['email']) &&
             isset($this->params['password']))

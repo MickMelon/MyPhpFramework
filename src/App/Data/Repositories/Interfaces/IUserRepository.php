@@ -1,6 +1,8 @@
 <?php
 namespace App\Data\Repositories\Interfaces;
 
+use App\Models\User;
+
 interface IUserRepository
 {
     public function getAll();

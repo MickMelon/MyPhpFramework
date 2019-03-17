@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use Core\Util\Session;
+use App\Data\Repositories\Interfaces\IUserRepository;
 
 class AuthService
 {

@@ -25,7 +25,7 @@ class Router
      * @param string $actionPath The controller and action. 
      *               Ex: Home@About where Home is the controller name and About is
      *               the action name. {Controller}@{Action}
-     * @return Router This router.
+     * @return self
      */
     public function get(string $pattern, string $actionPath)
     {
@@ -58,13 +58,20 @@ class Router
      */
     public function addRoute(string $method, string $pattern, string $actionPath)
     {
-        $handler = RequestHandler::make($actionPath);
+        /*$handler = RequestHandler::make($actionPath);
         if (!$handler)
-            throw new Exception('Could not find valid route for action path: ' . $actionPath);
+            throw new Exception('Could not find valid route for action path: ' . $actionPath);*/
 
+        $explode = explode('@', $actionPath);
+        $controller = $explode[0];
+        $action = $explode[1];
         $pattern = trim($pattern, '/');
 
-        $this->routes[$method][$pattern] = $handler;
+        $this->routes[$method][$pattern] = array(
+            'Controller' => $controller,
+            'Action' => $action
+        );
+
         return $this;
     }
 

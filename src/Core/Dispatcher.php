@@ -1,7 +1,11 @@
 <?php
 namespace Core;
 
-use Core\Results\ViewResult;
+use Core\Results\View;
+
+use Core\Factories\ControllerFactory;
+use Core\Factories\RepositoryFactory;
+use Core\Factories\ServiceFactory;
 
 /**
  * Undocumented class
@@ -15,14 +19,24 @@ class Dispatcher
      */
     private $router;
 
+    private $controllerFactory;
+    private $repositoryFactory;
+    private $serviceFactory;
+
     /**
      * Initializes a new instance of the Dispatcher class.
      *
      * @param Router $router The router.
      */
-    public function __construct(Router $router)
+    public function __construct(Router $router,
+        ControllerFactory $controllerFactory,
+        RepositoryFactory $repositoryFactory,
+        ServiceFactory $serviceFactory)
     {
         $this->router = $router;
+        $this->controllerFactory = $controllerFactory;
+        $this->repositoryFactory = $repositoryFactory;
+        $this->serviceFactory = $serviceFactory;
     }
 
     /**
@@ -31,21 +45,25 @@ class Dispatcher
      * @param Request $request The request.
      * @return void
      */
-    public function handle(Request $request)
+    public function dispatch(Request $request)
     {
         $handler = $this->router->match($request);
-        if (!$handler)
-        {
-            ViewResult::error('404 Page Not Found')->execute();
-            return;
+
+        if ($handler && isset($handler['Controller']) && isset($handler['Action']))
+        {            
+            $controllerName = $handler['Controller'];
+            $actionName = $handler['Action'];
+
+            $controller = $this->controllerFactory->make($controllerName);
+
+            if (method_exists($controller, $actionName))
+            {
+                $result = $controller->{ $actionName }($request);
+                $result->execute();
+                return;
+            }
         }
 
-        $controller = $handler->getController();
-        $action = $handler->getAction();
-        $params = $request->getParams();
-
-        $controller->withParams($params);
-        $result = $controller->{ $action }();
-        $result->execute();
+        View::error('404 Page Not Found')->execute();
     }
 }

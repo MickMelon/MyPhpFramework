@@ -1,9 +1,8 @@
 <?php
 namespace App\Controllers;
 
+use Core\Request;
 use Core\Results;
-use Core\BaseController;
-
 use Core\Util\Identity;
 use Core\Util\Session;
 
@@ -12,14 +11,14 @@ use App\Data\Repositories\UserRepository;
 /**
  * Undocumented class
  */
-class HomeController extends BaseController
+class HomeController
 {
     /**
      * Displays the home page.
      *
      * @return IActionResult
      */
-    public function home()
+    public function home(Request $request)
     {
         echo '*home';
         $result = new Results\View('Pages/home');
@@ -33,7 +32,7 @@ class HomeController extends BaseController
      *
      * @return void
      */
-    public function test()
+    public function test(Request $request)
     {
         echo '*test*';
         $user = $this->dataAccess->users()->getById(1);
@@ -47,7 +46,7 @@ class HomeController extends BaseController
      *
      * @return void
      */
-    public function paramstest()
+    public function paramstest(Request $request)
     {
         if (isset($this->params['test'])) echo 'tefgst1';
         $result = new Results\View('Pages/paramstest');
@@ -55,7 +54,7 @@ class HomeController extends BaseController
         return $result;
     }
 
-    public function lol()
+    public function lol(Request $request)
     {
         Session::set('user', 1);
         if (Identity::isLoggedIn())

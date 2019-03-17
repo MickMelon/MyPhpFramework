@@ -5,6 +5,10 @@ use App\Config;
 
 use Core\Util\Session;
 
+use DI;
+
+use Factories;
+
 use Exception;
 
 /**
@@ -29,9 +33,21 @@ class Startup
         Session::init();
 
         $router = $this->setupRouter();
-        $dispatcher = new Dispatcher($router);   
+        $container = $this->setupDiContainer();
 
-        $dispatcher->handle($request);
+        $dispatcher = new Dispatcher(
+            $router,                        
+            $container->get('Core\Factories\ControllerFactory'),
+            $container->get('Core\Factories\RepositoryFactory'),
+            $container->get('Core\Factories\ServiceFactory'));   
+        $dispatcher->dispatch($request);
+    }
+
+    private function setupDiContainer()
+    {
+        $container = new DI\Container();
+
+        return $container;
     }
 
     /**
@@ -40,7 +56,7 @@ class Startup
      * @param string $method The request method.
      * @return array
      */
-    private function getParams(string $method)
+    private function getParams(string $method): array
     {
         $params = array();
 
@@ -91,8 +107,5 @@ class Startup
     {
         if (!class_exists('App\Config'))
             throw new Exception('App\Config class not found.');
-
-        if (!class_exists('App\Models\DataAccess'))
-            throw new Exception('App\Models\DataAccess class not found.');
     }
 }
