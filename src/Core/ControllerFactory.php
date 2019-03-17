@@ -14,7 +14,7 @@ class ControllerFactory
      * @param string $name The controller name. (do not include 'Controller' as part of the name)
      * @return BaseController The controller or false if none found.
      */
-    public static function make(string $name)
+    public static function makew(string $name)
     {
         $className = 'App\Controllers\\' . ucfirst($name) . 'Controller';
         if (class_exists($className, true))
@@ -24,5 +24,18 @@ class ControllerFactory
         }
 
         return false;
+    }
+
+    public function make(string $name)
+    {
+        switch ($name)
+        {
+            case 'Home':
+                return new HomeController();
+
+            case 'Login':
+                $database = new PdoDatabase();
+                return new LoginController();
+        }
     }
 }

@@ -6,6 +6,13 @@ use Core\Results;
 
 class LoginController extends BaseController
 {
+    private $authService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     /**
      * Shows the login page.
      *
@@ -21,7 +28,7 @@ class LoginController extends BaseController
         if (isset($this->params['email']) &&
             isset($this->params['password']))
         {
-            $success = Identity::login($this->params['email'], $this->params['password']);
+            $success = $this->authService->login($this->params['email'], $this->params['password']);
             if (!$success)
             {
                 $errors[] = 'Invalid email or password.';
