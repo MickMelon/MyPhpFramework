@@ -1,8 +1,8 @@
 <?php
 namespace Core;
 
-use Core\Results\View;
-
+use Core\Results;
+use Core\Util\Session;
 use Core\Factories\ControllerFactory;
 use Core\Factories\RepositoryFactory;
 use Core\Factories\ServiceFactory;
@@ -53,6 +53,20 @@ class Dispatcher
         {            
             $controllerName = $handler['Controller'];
             $actionName = $handler['Action'];
+            $options = $handler['Options'];
+
+            if (in_array('RequireAuth', $options))
+            {
+                if (!Session::isLoggedIn())
+                {
+                    $result = new Results\InternalRedirect('GET', '/login', array(
+                        'test' => 'lol',
+                        'etstse' => '123'
+                    ));
+                    $result->execute();
+                    return;
+                }
+            }
 
             $controller = $this->controllerFactory->make($controllerName);
 
@@ -64,6 +78,6 @@ class Dispatcher
             }
         }
 
-        View::error('404 Page Not Found')->execute();
+        Results\View::error('404 Page Not Found')->execute();
     }
 }

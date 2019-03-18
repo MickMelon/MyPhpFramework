@@ -13,11 +13,35 @@ class InternalRedirect implements IActionResult
     public function __construct(string $method, string $path, array $params = array())
     {
         $this->method = $method;
-        $this->path = $path;
+        $this->path = trim($path, '/');
         $this->params = $params;
     }
 
     public function execute()
+    {
+        if ($this->method === 'GET')
+        {
+            $this->executeGet();
+        }
+        else if ($this->method === 'POST')
+        {
+            $this->executePost();
+        }
+    }
+
+    private function executeGet()
+    {
+        $url = Config::SITE_DOMAIN . Config::SITE_ROOT . $this->path;
+
+        if (sizeof($this->params) > 0)
+        {
+            $url .= '?' . http_build_query($this->params);
+        }
+        
+        header('Location: ' . $url);
+    }
+
+    private function executePost()
     {
         $url = Config::SITE_DOMAIN . Config::SITE_ROOT . $this->path;
         $options = array(
@@ -35,6 +59,6 @@ class InternalRedirect implements IActionResult
             throw new Exception("InternalRedirectResult to $this->path via $this->method failed.");
         }
 
-        print($result);    
+        print($result);
     }
 }

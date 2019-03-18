@@ -87,11 +87,11 @@ class Startup
     {
         $router = new Router();
         $router
-            ->get('/', 'Home@Home')
-            ->get('/home', 'Home@Home')
-            ->get('/test', 'Home@Test')
-            ->get('/test/params', 'Home@ParamsTest')
-            ->get('/lol', 'Home@Lol')
+            ->get('/', 'Home@Home', array('RequireAuth'))
+            ->get('/home', 'Home@Home', array('RequireAuth'))
+            ->get('/test', 'Home@Test', array('RequireAuth'))
+            ->get('/test/params', 'Home@ParamsTest', array('RequireAuth'))
+            ->get('/lol', 'Home@Lol', array('RequireAuth'))
             ->get('/login', 'Login@Index')
             ->post('/login/submit', 'Login@Submit');
         return $router;

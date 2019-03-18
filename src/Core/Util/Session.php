@@ -87,4 +87,9 @@ class Session
         if (!PHP_SAPI === 'cli')
             session_destroy();
     }
+
+    public static function isLoggedIn()
+    {
+        return self::exists('User');
+    }
 }
