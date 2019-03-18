@@ -1,6 +1,10 @@
 <?php
 namespace Core\Util;
 
+/**
+ * Handles all session related functions. This is used to prevent the whole app being tightly
+ * coupled to sessions, meaning it is unit testable and accessible by command-line.
+ */
 class Session
 {
     /**
@@ -88,6 +92,11 @@ class Session
             session_destroy();
     }
 
+    /**
+     * Checks if the user is currently logged in.
+     *
+     * @return boolean Whether the user is logged in.
+     */
     public static function isLoggedIn()
     {
         return self::exists('User');

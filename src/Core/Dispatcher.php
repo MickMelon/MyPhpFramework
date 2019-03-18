@@ -59,10 +59,7 @@ class Dispatcher
             {
                 if (!Session::isLoggedIn())
                 {
-                    $result = new Results\InternalRedirect('GET', '/login', array(
-                        'test' => 'lol',
-                        'etstse' => '123'
-                    ));
+                    $result = new Results\InternalRedirect('GET', '/login');
                     $result->execute();
                     return;
                 }

@@ -43,6 +43,11 @@ class Startup
         $dispatcher->dispatch($request);
     }
 
+    /**
+     * Sets up the PHP-DI container.
+     *
+     * @return Container
+     */
     private function setupDiContainer()
     {
         $container = new DI\Container();
